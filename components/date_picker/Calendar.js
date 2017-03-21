@@ -18,6 +18,7 @@ const factory = (IconButton) => {
         React.PropTypes.string,
         React.PropTypes.object
       ]),
+      markedDates: React.PropTypes.array,
       maxDate: PropTypes.object,
       minDate: PropTypes.object,
       onChange: PropTypes.func,
@@ -131,6 +132,7 @@ const factory = (IconButton) => {
               disabledDates={this.props.disabledDates}
               key={this.state.viewDate.getMonth()}
               locale={this.props.locale}
+              markedDates={this.props.markedDates}
               maxDate={this.props.maxDate}
               minDate={this.props.minDate}
               onDayClick={this.handleDayClick}

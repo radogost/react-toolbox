@@ -32,6 +32,7 @@ const factory = (Input, DatePickerDialog) => {
         React.PropTypes.string,
         React.PropTypes.object
       ]),
+      markedDates: React.PropTypes.array,
       maxDate: PropTypes.object,
       minDate: PropTypes.object,
       name: PropTypes.string,
@@ -107,7 +108,7 @@ const factory = (Input, DatePickerDialog) => {
 
     render () {
       const { active, onDismiss,// eslint-disable-line
-        autoOk, cancelLabel, enabledDates, disabledDates, inputClassName, inputFormat,
+        autoOk, cancelLabel, markedDates, enabledDates, disabledDates, inputClassName, inputFormat,
         locale, maxDate, minDate, okLabel, onEscKeyDown, onOverlayClick, readonly,
         sundayFirstDayOfWeek, value, ...others } = this.props;
       const finalInputFormat = inputFormat || time.formatDate;
@@ -139,6 +140,7 @@ const factory = (Input, DatePickerDialog) => {
             disabledDates={disabledDates}
             enabledDates={enabledDates}
             locale={locale}
+            markedDates={markedDates}
             maxDate={maxDate}
             minDate={minDate}
             name={this.props.name}

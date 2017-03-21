@@ -149,6 +149,9 @@
   &.disabled {
     opacity: $calendar-day-disable-opacity;
   }
+  &.marked > span {
+    background: $calendar-day-marked-color;
+  }
 }
 
 .month {

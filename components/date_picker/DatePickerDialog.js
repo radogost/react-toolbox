@@ -15,6 +15,7 @@ const factory = (Dialog, Calendar) => {
         React.PropTypes.string,
         React.PropTypes.object
       ]),
+      markedDates: PropTypes.array,
       maxDate: PropTypes.object,
       minDate: PropTypes.object,
       name: PropTypes.string,
@@ -125,6 +126,7 @@ const factory = (Dialog, Calendar) => {
               display={this.state.display}
               enabledDates={this.props.enabledDates}
               handleSelect={this.handleSelect}
+              markedDates={this.props.markedDates}
               maxDate={this.props.maxDate}
               minDate={this.props.minDate}
               onChange={this.handleNewDate}

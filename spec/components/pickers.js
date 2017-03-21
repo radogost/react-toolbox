@@ -2,6 +2,20 @@ import React from 'react';
 import DatePicker from '../../components/date_picker';
 import TimePicker from '../../components/time_picker';
 
+function getDateArray (startDay, numberOfDates) {
+  if (numberOfDates <= 0) return;
+  const dates = [];
+  const startDate = new Date();
+  startDate.setDate(startDay);
+  startDate.setHours(0, 0, 0, 0);
+
+  for (let i = 0; i < numberOfDates; i++) {
+    const date = new Date(startDate.getTime());
+    date.setDate(date.getDate() + i);
+    dates.push(date);
+  }
+  return dates;
+}
 
 const datetime = new Date(2015, 10, 16);
 const min_datetime = new Date(new Date(datetime).setDate(8));
@@ -11,6 +25,7 @@ datetime.setMinutes(28);
 const today = new Date();
 today.setHours(0, 0, 0, 0);
 const enabledDisabledDates = [new Date(today.getTime()), new Date(today.setDate(today.getDate() - 1))];
+const markedDates = getDateArray(4, 20);
 
 class PickersTest extends React.Component {
   state = {
@@ -106,6 +121,13 @@ class PickersTest extends React.Component {
           onChange={this.handleChange.bind(this, 'date6')}
           disabledDates={enabledDisabledDates}
           value={this.state.date6}
+        />
+
+        <DatePicker
+          label='Date picker with marked dates'
+          onChange={this.handleChange.bind(this, 'date7')}
+          markedDates={markedDates}
+          value={this.state.date7}
         />
 
         <TimePicker

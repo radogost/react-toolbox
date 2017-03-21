@@ -11,6 +11,7 @@ class Month extends Component {
       React.PropTypes.string,
       React.PropTypes.object
     ]),
+    markedDates: React.PropTypes.array,
     maxDate: PropTypes.object,
     minDate: PropTypes.object,
     onDayClick: PropTypes.func,
@@ -27,21 +28,34 @@ class Month extends Component {
 
   static defaultProps = {
     disabledDates: [],
-    enabledDates: []
+    enabledDates: [],
+    markedDates: []
   };
 
   handleDayClick = (day) => {
     if (this.props.onDayClick) this.props.onDayClick(day);
   };
 
+  getCompareDate (date) {
+    return compDate => date.getTime() === compDate.getTime();
+  }
+
   isDayDisabled (date) {
     const {minDate, maxDate, enabledDates, disabledDates} = this.props;
-    const compareDate = compDate => date.getTime() === compDate.getTime();
+    const compareDate = this.getCompareDate(date);
     const dateInDisabled = disabledDates.filter(compareDate).length > 0;
     const dateInEnabled = enabledDates.filter(compareDate).length > 0;
     return time.dateOutOfRange(date, minDate, maxDate)
       || (enabledDates.length > 0 && !dateInEnabled)
       || dateInDisabled;
+  }
+
+  isDayMarked (date) {
+    const {minDate, maxDate, markedDates} = this.props;
+    const compareDate = this.getCompareDate(date);
+    const dateInMarked = markedDates.filter(compareDate).length > 0;
+    return !time.dateOutOfRange(date, minDate, maxDate)
+      && dateInMarked;
   }
 
   renderWeeks () {
@@ -58,6 +72,7 @@ class Month extends Component {
           key={i}
           day={i}
           disabled={this.isDayDisabled(date)}
+          marked={this.isDayMarked(date)}
           onClick={this.handleDayClick}
           selectedDate={this.props.selectedDate}
           theme={this.props.theme}

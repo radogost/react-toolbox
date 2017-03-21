@@ -6,13 +6,15 @@ class Day extends Component {
   static propTypes = {
     day: PropTypes.number,
     disabled: PropTypes.bool,
+    marked: PropTypes.bool,
     onClick: PropTypes.func,
     selectedDate: PropTypes.object,
     sundayFirstDayOfWeek: PropTypes.bool,
     theme: PropTypes.shape({
       active: PropTypes.string,
       day: PropTypes.string,
-      disabled: PropTypes.string
+      disabled: PropTypes.string,
+      marked: PropTypes.string
     }),
     viewDate: PropTypes.object
   };
@@ -43,7 +45,8 @@ class Day extends Component {
   render () {
     const className = classnames(this.props.theme.day, {
       [this.props.theme.active]: this.isSelected(),
-      [this.props.theme.disabled]: this.props.disabled
+      [this.props.theme.disabled]: this.props.disabled,
+      [this.props.theme.marked]: this.props.marked
     });
 
     return (
