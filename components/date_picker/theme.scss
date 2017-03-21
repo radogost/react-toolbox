@@ -135,11 +135,11 @@
     line-height: $calendar-row-height;
     border-radius: 50%;
   }
-  &:hover:not(.active):not(.disabled) > span {
+  &:hover:not(.active):not(.disabled):not(.marked) > span {
     color: $calendar-primary-contrast-color;
     background: $calendar-primary-hover-color;
   }
-  &.active > span {
+  &.active:not(.marked) > span {
     color: $calendar-primary-contrast-color;
     background: $calendar-primary-color;
   }
@@ -150,7 +150,16 @@
     opacity: $calendar-day-disable-opacity;
   }
   &.marked > span {
+    color: darken($calendar-day-marked-color, 50%);
     background: $calendar-day-marked-color;
+    box-shadow: inset 0 0 10px 1px darken($calendar-day-marked-color, 10%);
+  }
+  &.marked:hover > span {
+    background: darken($calendar-day-marked-color, 10%);
+  }
+  &.marked.active > span {
+    color: $calendar-primary-contrast-color;
+    background: darken($calendar-day-marked-color, 15%);
   }
 }
 
