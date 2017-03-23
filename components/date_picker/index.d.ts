@@ -134,6 +134,10 @@ export interface DatePickerProps extends ReactToolbox.Props {
    */
   locale?: "de" | "no" | "en" | "es" | "af" | "ar" | "be" | "bg" | "bn" | "bo" | "br" | "bs" | "ca" | "gl" | "eu" | "pt" | "it" | "fr" | "ru" | "ua" | DatePickerLocale;
   /**
+   * An array of date objects which will be marked in the calendar.
+   */
+  markedDates?: Date[];
+  /**
    * Date object with the maximum selectable date.
    */
   maxDate?: Date;
